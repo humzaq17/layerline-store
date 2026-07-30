@@ -59,25 +59,36 @@
   .result-count{font-size:13px; color:var(--ink-dim); margin-top:10px;}
 
   .shop{padding:36px 0 100px;}
-  .shop-layout{display:grid; grid-template-columns:220px 1fr; gap:32px; align-items:start;}
 
-  .sidebar{position:sticky; top:78px; background:var(--paper); border:1px solid var(--line); border-radius:6px; padding:6px;}
-  .sidebar summary{
-    font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:.05em;
-    padding:12px 14px; cursor:pointer; color:var(--ink); list-style:none; display:flex; justify-content:space-between; align-items:center;
+  .shop-toolbar{position:relative; margin-bottom:26px;}
+  .filter-toggle{
+    display:inline-flex; align-items:center; gap:9px; background:var(--paper); border:1px solid var(--line);
+    padding:10px 18px; border-radius:22px; font-family:var(--mono); font-size:12px; text-transform:uppercase;
+    letter-spacing:.05em; color:var(--ink); cursor:pointer;
   }
-  .sidebar summary::-webkit-details-marker{display:none;}
-  .sidebar summary::after{content:"▾"; color:var(--ink-dim); font-size:11px;}
-  .sidebar[open] summary::after{content:"▴";}
-  .cat-list{padding:2px 10px 12px;}
+  .filter-toggle:hover{border-color:var(--blue-deep);}
+  .filter-toggle .arrow{color:var(--ink-dim); font-size:10px; transition:transform .15s;}
+  .filter-toggle.open .arrow{transform:rotate(180deg);}
+  .filter-badge{background:var(--blue-deep); color:#fff; border-radius:10px; font-size:10.5px; padding:1px 8px; font-family:var(--sans); text-transform:none; letter-spacing:normal;}
+
+  .filter-dropdown{
+    position:absolute; top:calc(100% + 10px); left:0; z-index:35; background:var(--paper); border:1px solid var(--line);
+    border-radius:8px; padding:8px; width:280px; box-shadow:0 14px 34px rgba(38,34,26,0.14);
+    opacity:0; pointer-events:none; transform:translateY(-8px); transition:opacity .16s, transform .16s;
+  }
+  .filter-dropdown.open{opacity:1; pointer-events:auto; transform:translateY(0);}
+  .cat-list{padding:6px 10px 10px;}
   .cat-item{display:flex; align-items:center; gap:9px; padding:8px 4px; font-size:13.5px; cursor:pointer; border-radius:4px;}
   .cat-item:hover{background:var(--paper-2);}
   .cat-item input{accent-color:var(--blue-deep); width:15px; height:15px;}
   .cat-item .cnt{margin-left:auto; color:var(--ink-dim); font-family:var(--mono); font-size:11px;}
-  .cat-all-row{border-bottom:1px solid var(--line); margin-bottom:6px; padding-bottom:8px;}
+  .cat-all-row{border-bottom:1px solid var(--line); margin-bottom:6px; padding-bottom:8px; padding-left:10px;}
   .cat-all-row a{font-size:12px; color:var(--blue-deep); text-decoration:underline; padding:0 4px;}
 
-  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:22px;}
+  .grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:20px;}
+  @media (max-width:1100px){ .grid{grid-template-columns:repeat(3, 1fr);} }
+  @media (max-width:780px){ .grid{grid-template-columns:repeat(2, 1fr);} }
+  @media (max-width:480px){ .grid{grid-template-columns:1fr;} }
   .card{background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); display:flex; flex-direction:column; overflow:hidden;}
   .thumb{position:relative; display:block; aspect-ratio:1/1; overflow:hidden; background:var(--paper-2);}
   .thumb img{width:100%; height:100%; object-fit:cover; object-position:center; transition:transform .4s, filter .4s; filter:sepia(10%) saturate(88%) contrast(97%) brightness(1.02);}
@@ -169,8 +180,7 @@
   .back-link:hover{color:var(--ink);}
 
   @media (max-width:860px){
-    .shop-layout{grid-template-columns:1fr;}
-    .sidebar{position:static;}
+    .filter-dropdown{width:min(320px, calc(100vw - 56px));}
   }
 </style>
 </head>
@@ -195,18 +205,15 @@
 </section>
 
 <section class="shop">
-  <div class="wrap shop-layout">
-    <details class="sidebar" id="sidebar" open>
-      <summary>Categories</summary>
-      <div class="cat-list">
+  <div class="wrap">
+    <div class="shop-toolbar">
+      <button class="filter-toggle" id="filter-toggle">Filters <span class="filter-badge" id="filter-badge" style="display:none;"></span> <span class="arrow">▾</span></button>
+      <div class="filter-dropdown" id="filter-dropdown">
         <div class="cat-all-row"><a href="#" id="select-all">Select all</a> · <a href="#" id="select-none">Clear all</a></div>
-        <div id="cat-checkboxes"></div>
+        <div class="cat-list" id="cat-checkboxes"></div>
       </div>
-    </details>
-
-    <div>
-      <div class="grid" id="product-grid"></div>
     </div>
+    <div class="grid" id="product-grid"></div>
   </div>
 </section>
 
@@ -288,14 +295,11 @@
       blurb:"The essential Gridfinity bin set — 2,600+ likes, the most-liked storage design on Printables.", price:14.00,
       img:"https://media.printables.com/media/prints/184201/images/1717862_70493daf-04a7-400d-8c05-a8fbf99ab6e8/thumbs/cover/800x800/webp/ra_9zu-mnl8.webp",
       url:"https://www.printables.com/model/184201-gridfinity-plain-bins" },
-    { id:"skadis-ultimate-set", cat:"storage", title:"IKEA Skådis Ultimate Set", maker:"Matyáš Grohmann", tag:"Pegboard",
-      blurb:"29 bins, trays and hangers for the IKEA Skådis pegboard system.", price:19.00,
+    { id:"skadis-ultimate-set", cat:"storage", title:"IKEA Skådis Bins", maker:"Matyáš Grohmann", tag:"Pegboard",
+      blurb:"Pick your own mix of bins, trays and hangers for the IKEA Skådis pegboard system — priced and sold individually by size, not as a fixed 29-piece set.",
+      sizes:[ {name:"Small bin", price:5.00}, {name:"Medium bin", price:8.00}, {name:"Large bin", price:11.00} ],
       img:"https://media.printables.com/media/prints/1157173/images/8788394_2f4c88b8-06b2-42af-b31d-e9d02ae581d4_2c8003b1-8069-47f3-85c3-3ff2eaf7fd42/thumbs/cover/800x800/png/skadis-set-pic1.png",
       url:"https://www.printables.com/model/1157173-ikea-skadis-ultimate-bin-tray-hanger-set" },
-    { id:"gridfinity-drawers", cat:"storage", title:"Modular Gridfinity Drawers", maker:"Travis Houston", tag:"Gridfinity",
-      blurb:"A full drawer unit built around the Gridfinity grid system, 2x5 cells.", price:16.00,
-      img:"https://media.printables.com/media/prints/402298/images/3381595_a8863b81-18c4-4674-9e79-3d736845f7f4/thumbs/cover/800x800/jpg/img_20230221_200046.jpg",
-      url:"https://www.printables.com/model/402298-modular-gridfinity-drawers" },
     { id:"gridfinity-box-classic", cat:"storage", title:"Gridfinity Box Classic", maker:"GlennovitS 3D", tag:"Gridfinity",
       blurb:"Quick-print stackable bins for a desk or drawer, several sizes available.", price:12.00,
       img:"https://media.printables.com/media/prints/197640c2-3691-4d8d-8d2f-29b869092992/images/10588484_f18418a6-d9fc-43ad-9450-8c1afcb2c343_57cec628-05c0-40a9-9730-aae75a08def7/thumbs/cover/800x800/png/classic-4x3-thumbnail2x.png",
@@ -405,14 +409,22 @@
       blurb:"Single-part bottle cage, prints with no supports. Contest winner.", price:11.00,
       img:"https://media.printables.com/media/prints/5cc0f2dc-3f0d-4e14-9588-f2617f77d90b/images/10328965_57f29363-64a7-482d-8f05-af7d821bbd6c_a7603e8d-1f61-4d02-88c3-26e30ce1dfa4/thumbs/cover/800x800/jpg/pxl_20250728_010716796.jpg",
       url:"https://www.printables.com/model/1365734-bicycle-water-bottle-holder-bike-cage" },
-    { id:"marble-fidget-toy", cat:"extras", title:"3D Spiral Marble Fidget Toy", maker:"vmLOGIC", tag:"Desk Toy", source:"Printables",
-      blurb:"A marble permanently captured in a rising spiral track. Tilt, roll, repeat. Contest winner.", price:9.00,
-      img:"https://media.printables.com/media/prints/fe46aae6-6514-4803-9081-30c36a351b01/images/12900433_effbdcbe-426b-4492-803e-e6845732a22b_e35f6988-324b-44fe-a84f-409b0f5a278e/thumbs/cover/800x800/jpeg/spiral-3d.jpg",
-      url:"https://www.printables.com/model/1719662-3d-spiral-marble-fidget-toy" }
+    { id:"mecha-phone-stand", cat:"office", title:"Mecha Phone/Tablet Stand", maker:"Fishbone Workshop", tag:"Phone Stand", source:"Printables",
+      blurb:"A futuristic robot-leg stand for phones and tablets up to 12.4 inch. Contest winner, 575+ likes.", price:22.00,
+      img:"https://media.printables.com/media/prints/173761/images/1633337_76be0437-e627-420f-bf64-a0fc38dea406/thumbs/cover/800x800/jpg/20220418_145816.jpg",
+      url:"https://www.printables.com/model/173761-mecha-phonetablet-stand" },
+    { id:"umb-modular-box-system", cat:"storage", title:"UMB Ultimate Modular Box System", maker:"R3Design", tag:"Storage", source:"Printables",
+      blurb:"30+ parametric parts: 6 pre-assembled boxes, 12 accessories, 12 sides. Second-place contest winner, 2,600+ likes.", price:22.00,
+      img:"https://media.printables.com/media/prints/57614/images/604310_25f65823-0cad-4193-8fd1-c8b74d5728d1/thumbs/cover/800x800/jpg/md_umb2-20.jpg",
+      url:"https://www.printables.com/model/57614-umb-ultimate-modular-box-system-more-than-30-param" }
   ];
 
   const selection = {};
-  PRODUCTS.forEach(p => selection[p.id] = { colorIdx: 0, qty: 1 });
+  PRODUCTS.forEach(p => {
+    selection[p.id] = p.sizes
+      ? { colorIdx: 0, sizeQtys: p.sizes.map(() => 0) }
+      : { colorIdx: 0, qty: 1 };
+  });
   const activeCats = new Set(CATS.map(c => c.id));
   let searchTerm = "";
 
@@ -422,7 +434,18 @@
   const fmt = n => "$" + n.toFixed(2) + " CAD";
   const findProduct = id => PRODUCTS.find(p => p.id === id);
 
-  function renderSidebar(){
+  function updateFilterBadge(){
+    const badge = document.getElementById('filter-badge');
+    const total = CATS.length, active = activeCats.size;
+    if (active === total || active === 0){
+      badge.style.display = 'none';
+    } else {
+      badge.style.display = 'inline';
+      badge.textContent = `${active}/${total}`;
+    }
+  }
+
+  function renderFilterPanel(){
     document.getElementById('cat-checkboxes').innerHTML = CATS.map(c => {
       const count = PRODUCTS.filter(p => p.cat === c.id).length;
       return `
@@ -437,21 +460,38 @@
       box.addEventListener('change', () => {
         if (box.checked) activeCats.add(box.dataset.cat);
         else activeCats.delete(box.dataset.cat);
+        updateFilterBadge();
         renderGrid();
       });
     });
+    updateFilterBadge();
   }
-  renderSidebar();
+  renderFilterPanel();
 
   document.getElementById('select-all').addEventListener('click', (e) => {
     e.preventDefault();
     CATS.forEach(c => activeCats.add(c.id));
-    renderSidebar(); renderGrid();
+    renderFilterPanel(); renderGrid();
   });
   document.getElementById('select-none').addEventListener('click', (e) => {
     e.preventDefault();
     activeCats.clear();
-    renderSidebar(); renderGrid();
+    renderFilterPanel(); renderGrid();
+  });
+
+  // Toggleable filter dropdown
+  const filterToggle = document.getElementById('filter-toggle');
+  const filterDropdown = document.getElementById('filter-dropdown');
+  filterToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    filterDropdown.classList.toggle('open');
+    filterToggle.classList.toggle('open');
+  });
+  document.addEventListener('click', (e) => {
+    if (!filterDropdown.contains(e.target) && !filterToggle.contains(e.target)){
+      filterDropdown.classList.remove('open');
+      filterToggle.classList.remove('open');
+    }
   });
 
   document.getElementById('search-input').addEventListener('input', (e) => {
@@ -467,6 +507,7 @@
   }
 
   function renderCard(product){
+    if (product.sizes) return renderSizedCard(product);
     return `
       <div class="card">
         <a class="thumb" href="${product.url}" target="_blank" rel="noopener noreferrer">
@@ -493,6 +534,39 @@
             <div class="price">${fmt(product.price)}<br><small>per item</small></div>
           </div>
           <button class="btn btn-primary btn-block" data-add="${product.id}">Add to cart</button>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderSizedCard(product){
+    const sel = selection[product.id];
+    return `
+      <div class="card">
+        <a class="thumb" href="${product.url}" target="_blank" rel="noopener noreferrer">
+          <img src="${product.img}" alt="${product.title}" loading="lazy" referrerpolicy="no-referrer">
+        </a>
+        <div class="card-body">
+          <span class="chip">${product.tag}</span>
+          <div class="card-title">${product.title}</div>
+          <a class="source-link" href="${product.url}" target="_blank" rel="noopener noreferrer">by ${product.maker} — view on ${product.source || 'Printables'} ↗</a>
+          <div class="blurb">${product.blurb}</div>
+          <div>
+            <div class="opt-label">Colour</div>
+            <div class="swatches">${renderSwatches(product)}</div>
+          </div>
+          <div class="opt-label">Pick sizes &amp; quantities</div>
+          ${product.sizes.map((s, i) => `
+            <div class="row-between" style="margin-bottom:8px;">
+              <div style="font-size:12.5px;">${s.name}<br><span style="color:var(--ink-dim); font-size:11px;">${fmt(s.price)} each</span></div>
+              <div class="qty">
+                <button data-size-qty="dec" data-product="${product.id}" data-size="${i}">–</button>
+                <span id="sizeqty-${product.id}-${i}">${sel.sizeQtys[i]}</span>
+                <button data-size-qty="inc" data-product="${product.id}" data-size="${i}">+</button>
+              </div>
+            </div>
+          `).join('')}
+          <button class="btn btn-primary btn-block" data-add-sized="${product.id}">Add to cart</button>
         </div>
       </div>
     `;
@@ -536,21 +610,59 @@
       document.getElementById(`qty-${id}`).textContent = selection[id].qty;
       return;
     }
+    const sizeQtyBtn = e.target.closest('[data-size-qty]');
+    if (sizeQtyBtn){
+      const id = sizeQtyBtn.dataset.product;
+      const sIdx = parseInt(sizeQtyBtn.dataset.size,10);
+      const dir = sizeQtyBtn.dataset.sizeQty === 'inc' ? 1 : -1;
+      const sel = selection[id];
+      sel.sizeQtys[sIdx] = Math.max(0, sel.sizeQtys[sIdx] + dir);
+      document.getElementById(`sizeqty-${id}-${sIdx}`).textContent = sel.sizeQtys[sIdx];
+      return;
+    }
     const addBtn = e.target.closest('[data-add]');
-    if (addBtn){ addToCart(addBtn.dataset.add); }
+    if (addBtn){ addToCart(addBtn.dataset.add); return; }
+    const addSizedBtn = e.target.closest('[data-add-sized]');
+    if (addSizedBtn){ addSizedToCart(addSizedBtn.dataset.addSized); }
   });
 
   function addToCart(productId){
     const sel = selection[productId];
-    const existing = cart.find(l => l.productId === productId && l.colorIdx === sel.colorIdx);
+    const existing = cart.find(l => l.productId === productId && l.colorIdx === sel.colorIdx && l.sizeIdx === undefined);
     if (existing){ existing.qty += sel.qty; }
     else { cart.push({ productId, colorIdx: sel.colorIdx, qty: sel.qty }); }
     updateCartCount();
     openDrawer("cart");
   }
+  function addSizedToCart(productId){
+    const sel = selection[productId];
+    const product = findProduct(productId);
+    let addedAny = false;
+    product.sizes.forEach((s, i) => {
+      const qty = sel.sizeQtys[i];
+      if (qty > 0){
+        addedAny = true;
+        const existing = cart.find(l => l.productId === productId && l.colorIdx === sel.colorIdx && l.sizeIdx === i);
+        if (existing){ existing.qty += qty; }
+        else { cart.push({ productId, colorIdx: sel.colorIdx, qty, sizeIdx: i }); }
+        sel.sizeQtys[i] = 0;
+        const span = document.getElementById(`sizeqty-${productId}-${i}`);
+        if (span) span.textContent = '0';
+      }
+    });
+    if (addedAny){ updateCartCount(); openDrawer("cart"); }
+  }
   function removeLine(index){ cart.splice(index,1); updateCartCount(); renderDrawer(); }
   function changeLineQty(index, dir){ cart[index].qty = Math.max(1, cart[index].qty + dir); renderDrawer(); }
-  function cartTotal(){ return cart.reduce((sum,l) => sum + findProduct(l.productId).price * l.qty, 0); }
+  function linePrice(line){
+    const p = findProduct(line.productId);
+    return p.sizes ? p.sizes[line.sizeIdx].price : p.price;
+  }
+  function lineTitle(line){
+    const p = findProduct(line.productId);
+    return p.sizes ? `${p.title} — ${p.sizes[line.sizeIdx].name}` : p.title;
+  }
+  function cartTotal(){ return cart.reduce((sum,l) => sum + linePrice(l) * l.qty, 0); }
   function updateCartCount(){ document.getElementById('cart-count').textContent = cart.reduce((s,l)=>s+l.qty,0); }
 
   const scrim = document.getElementById('scrim');
@@ -583,12 +695,12 @@
     body.innerHTML = cart.map((line, i) => {
       const p = findProduct(line.productId);
       const color = COLORS[line.colorIdx];
-      const lineTotal = p.price * line.qty;
+      const lineTotal = linePrice(line) * line.qty;
       return `
         <div class="line-item">
-          <img src="${p.img}" alt="${p.title}" referrerpolicy="no-referrer">
+          <img src="${p.img}" alt="${lineTitle(line)}" referrerpolicy="no-referrer">
           <div class="line-info">
-            <div class="line-title">${p.title}</div>
+            <div class="line-title">${lineTitle(line)}</div>
             <div class="line-meta">${color.name}</div>
             <div class="line-row">
               <div class="qty">
@@ -628,8 +740,7 @@
     const address = document.getElementById('buyer-address')?.value || "(not provided)";
     const orderNum = "LL-" + Date.now().toString().slice(-6);
     const lines = cart.map(l => {
-      const p = findProduct(l.productId);
-      return `- ${p.title} × ${l.qty} (${COLORS[l.colorIdx].name}) — ${fmt(p.price * l.qty)}`;
+      return `- ${lineTitle(l)} × ${l.qty} (${COLORS[l.colorIdx].name}) — ${fmt(linePrice(l) * l.qty)}`;
     }).join('\n');
     return {
       orderNum,
@@ -651,10 +762,9 @@
     const total = cartTotal();
 
     const itemRows = cart.map(l => {
-      const p = findProduct(l.productId);
       return `<div class="line-row" style="margin-bottom:6px; font-size:13px;">
-        <span>${p.title} × ${l.qty} (${COLORS[l.colorIdx].name})</span>
-        <span>${fmt(p.price * l.qty)}</span>
+        <span>${lineTitle(l)} × ${l.qty} (${COLORS[l.colorIdx].name})</span>
+        <span>${fmt(linePrice(l) * l.qty)}</span>
       </div>`;
     }).join('');
 
