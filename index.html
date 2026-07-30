@@ -31,13 +31,12 @@
   img{display:block; max-width:100%;}
   button{font-family:inherit; cursor:pointer;}
   .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
-  .tag{font-family:var(--mono); font-size:11px; letter-spacing:.04em; text-transform:uppercase;}
 
   /* ---------- NAV ---------- */
   header.nav{position:sticky; top:0; z-index:40; background:rgba(247,242,230,0.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
   .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:18px 28px;}
   .brand{font-family:var(--serif); font-style:italic; font-weight:600; font-size:23px;}
-  .nav-links{display:flex; gap:30px; font-size:14px; color:var(--ink-dim);}
+  .nav-links{display:flex; gap:26px; font-size:14px; color:var(--ink-dim);}
   .nav-links a{text-decoration:none;}
   .nav-links a:hover{color:var(--ink);}
   .cart-btn{
@@ -54,9 +53,9 @@
   .hero{padding:76px 0 90px; border-bottom:1px solid var(--line); overflow:hidden;}
   .hero-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:50px; align-items:center;}
   .eyebrow{color:var(--blue-deep); font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:18px;}
-  .hero h1{font-family:var(--serif); font-weight:600; font-size:clamp(38px,4.6vw,60px); line-height:1.05; letter-spacing:-0.01em; margin-bottom:22px;}
+  .hero h1{font-family:var(--serif); font-weight:600; font-size:clamp(36px,4.4vw,56px); line-height:1.08; letter-spacing:-0.01em; margin-bottom:22px;}
   .hero h1 em{font-style:italic; color:var(--blue-deep); font-weight:500;}
-  .hero p.sub{color:var(--ink-dim); font-size:17px; max-width:460px; margin-bottom:30px;}
+  .hero p.sub{color:var(--ink-dim); font-size:17px; max-width:480px; margin-bottom:30px;}
   .hero-cta{display:flex; gap:14px; flex-wrap:wrap;}
   .btn{
     font-family:var(--sans); font-size:14px; font-weight:600; padding:13px 24px; border-radius:24px;
@@ -94,42 +93,53 @@
 
   /* ---------- SHOP ---------- */
   .shop{padding:70px 0 110px;}
-  .shop-head{display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap; margin-bottom:6px;}
+  .shop-head{margin-bottom:6px;}
   .shop-head h2{font-family:var(--serif); font-size:32px;}
-  .shop-head p{color:var(--ink-dim); font-size:14px; max-width:420px;}
-  .shop-note{font-size:13px; color:var(--ink-dim); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:14px 0; margin:26px 0 38px;}
+  .shop-head p{color:var(--ink-dim); font-size:14px; max-width:520px;}
+  .shop-note{font-size:13px; color:var(--ink-dim); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:14px 0; margin:26px 0 10px;}
   .shop-note b{color:var(--ink);}
+  .cat-jump{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:56px;}
+  .cat-jump a{
+    font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.04em;
+    border:1px solid var(--line); border-radius:14px; padding:6px 12px; text-decoration:none; color:var(--ink-dim);
+  }
+  .cat-jump a:hover{border-color:var(--blue-deep); color:var(--blue-deep);}
 
-  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(272px,1fr)); gap:26px;}
+  .category-block{margin-bottom:64px; scroll-margin-top:90px;}
+  .category-head{display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:6px; border-bottom:1px solid var(--line); padding-bottom:14px;}
+  .category-head h3{font-family:var(--serif); font-size:24px;}
+  .category-head span{font-size:13px; color:var(--ink-dim);}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(266px,1fr)); gap:24px; margin-top:22px;}
   .card{background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); display:flex; flex-direction:column; overflow:hidden;}
   .thumb{position:relative; display:block; aspect-ratio:1/1; overflow:hidden; background:var(--paper-2);}
   .thumb img{width:100%; height:100%; object-fit:cover; transition:transform .4s;}
   .thumb:hover img{transform:scale(1.04);}
-  .card-body{padding:18px 18px 20px; display:flex; flex-direction:column; gap:11px; flex:1;}
-  .card-title{font-family:var(--serif); font-size:17px; font-weight:600; line-height:1.3;}
-  .source-link{font-size:12px; color:var(--ink-dim); text-decoration:none; display:inline-flex; align-items:center; gap:4px;}
+  .card-body{padding:16px 16px 18px; display:flex; flex-direction:column; gap:10px; flex:1;}
+  .card-title{font-family:var(--serif); font-size:16px; font-weight:600; line-height:1.3;}
+  .source-link{font-size:11.5px; color:var(--ink-dim); text-decoration:none; display:inline-flex; align-items:center; gap:4px;}
   .source-link:hover{color:var(--blue-deep);}
-  .blurb{font-size:13px; color:var(--ink-dim); flex:1;}
-  .chip{display:inline-block; background:var(--blue-pale); color:var(--blue-deep); font-family:var(--mono); font-size:10px; padding:4px 9px; border-radius:12px; letter-spacing:.02em; width:fit-content;}
+  .blurb{font-size:12.5px; color:var(--ink-dim); flex:1;}
+  .chip{display:inline-block; background:var(--blue-pale); color:var(--blue-deep); font-family:var(--mono); font-size:9.5px; padding:3px 8px; border-radius:12px; letter-spacing:.02em; width:fit-content;}
 
-  .opt-label{font-size:11px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:.04em; margin-bottom:7px;}
-  .swatches{display:flex; gap:8px; margin-bottom:14px;}
-  .swatch{width:22px; height:22px; border-radius:50%; border:2px solid transparent; outline:1px solid var(--line); outline-offset:2px; cursor:pointer;}
+  .opt-label{font-size:10.5px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:.04em; margin-bottom:6px;}
+  .swatches{display:flex; gap:7px; margin-bottom:12px;}
+  .swatch{width:20px; height:20px; border-radius:50%; border:2px solid transparent; outline:1px solid var(--line); outline-offset:2px; cursor:pointer;}
   .swatch.active{border-color:var(--ink);}
 
-  .row-between{display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;}
+  .row-between{display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;}
   .qty{display:flex; align-items:center; border:1px solid var(--line); border-radius:20px;}
-  .qty button{background:none; border:none; color:var(--ink); width:28px; height:28px; font-size:15px;}
+  .qty button{background:none; border:none; color:var(--ink); width:26px; height:26px; font-size:14px;}
   .qty button:hover{color:var(--blue-deep);}
-  .qty span{width:24px; text-align:center; font-size:13px;}
-  .price{font-family:var(--serif); font-weight:600; font-size:18px;}
-  .price small{color:var(--ink-dim); font-weight:400; font-size:11px; font-family:var(--sans);}
+  .qty span{width:22px; text-align:center; font-size:12.5px;}
+  .price{font-family:var(--serif); font-weight:600; font-size:17px;}
+  .price small{color:var(--ink-dim); font-weight:400; font-size:10.5px; font-family:var(--sans);}
 
   /* ---------- FOOTER ---------- */
   footer{border-top:1px solid var(--line); padding:50px 0;}
   footer .brand{margin-bottom:12px;}
-  footer p{color:var(--ink-dim); font-size:13px; max-width:440px;}
-  footer .fine{font-family:var(--mono); font-size:11px; color:#a89a76; margin-top:16px; max-width:520px;}
+  footer p{color:var(--ink-dim); font-size:13px; max-width:460px;}
+  footer .fine{font-family:var(--mono); font-size:11px; color:#a89a76; margin-top:16px; max-width:540px;}
 
   /* ---------- CART DRAWER ---------- */
   .scrim{position:fixed; inset:0; background:rgba(38,34,26,0.4); opacity:0; pointer-events:none; transition:opacity .2s; z-index:90;}
@@ -176,7 +186,6 @@
   .pay-card.recommended{border-color:var(--blue-deep); background:var(--blue-pale);}
   .pay-card h4{font-size:14px; margin-bottom:4px; display:flex; align-items:center; gap:8px;}
   .pay-card p{font-size:12.5px; color:var(--ink-dim); margin-bottom:12px;}
-  .badge-rec{background:var(--blue-deep); color:#fff; font-size:10px; padding:2px 8px; border-radius:10px; font-family:var(--mono);}
   .etransfer-details{font-size:13px; color:var(--ink-dim);}
   .etransfer-details code{background:var(--paper); padding:2px 6px; border-radius:3px; color:var(--blue-deep); font-family:var(--mono); border:1px solid var(--line);}
   .modal-actions{display:flex; gap:10px; margin-top:14px; flex-wrap:wrap;}
@@ -213,20 +222,20 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <div class="eyebrow">Incense holders, printed to order</div>
-      <h1>Small statues,<br><em>lit from within.</em></h1>
-      <p class="sub">Warriors, lotus flowers, and clean modern shapes — each one doubles as an incense stick holder. Pick a colour, add it to your cart, and we'll print and ship it.</p>
+      <div class="eyebrow">Made to order, printed near you</div>
+      <h1>Things people<br><em>actually buy.</em></h1>
+      <p class="sub">Storage, planters, incense holders, headphone hangers, controller mounts, nightstand trays — real, well-liked designs, printed to order in the colour you pick.</p>
       <div class="hero-cta">
         <a href="#shop" class="btn btn-primary">Browse the shop</a>
         <a href="#how" class="btn btn-ghost">How it works</a>
       </div>
     </div>
     <div class="collage">
-      <div class="photo p1"><img src="https://media.printables.com/media/prints/984728/images/7505035_0a868f1b-beb3-4dbe-85cb-26cb0039d125_f43bac2e-bfe3-4f65-90fa-e72eef915c81/thumbs/cover/800x800/jpg/2024-08-11_ef18a8eec158b.jpg" alt="Samurai Incense Holder"></div>
-      <div class="photo p2"><img src="https://media.printables.com/media/prints/66891e7c-acc2-448a-9891-73550d792bbd/images/10753211_058b324c-8dda-46dc-bf07-0a00edb775bb_8135bf36-3df9-43d2-be98-f871dd9e19d2/thumbs/cover/800x800/jpg/20250826_072130.jpg" alt="Lotus Incense Holder"></div>
-      <div class="photo p3"><img src="https://media.printables.com/media/prints/913917/images/6979993_72916e2d-6461-408c-a491-e4770e5cbdb2_97d3cb35-3a6b-469b-b4fe-dec50b6c8635/thumbs/cover/800x800/jpg/whatsapp-image-2024-06-16-at-143611_08e6e396.jpg" alt="Samurai Incense Holder Ready Stance"></div>
-      <div class="photo p4"><img src="https://media.printables.com/media/prints/724388/images/5673506_0a2e87e2-e8e6-4e9f-945e-e9f1093ad47a_7caa8749-2446-493d-a5d3-00696818e447/thumbs/cover/800x800/jpg/1.jpg" alt="Peaks Incense Holder"></div>
-      <div class="photo p5"><img src="https://media.printables.com/media/prints/983468/images/7496465_60c91ed0-3d2d-4e8a-8b4e-12d637a8b69e_68606710-6e5f-4d48-a3c8-cf62aa535d6c/thumbs/cover/800x800/jpg/20240823_133624.jpg" alt="Alien Incense Holder"></div>
+      <div class="photo p1"><img src="https://media.printables.com/media/prints/184201/images/1717862_70493daf-04a7-400d-8c05-a8fbf99ab6e8/thumbs/cover/800x800/webp/ra_9zu-mnl8.webp" alt="Gridfinity Plain Bins"></div>
+      <div class="photo p2"><img src="https://media.printables.com/media/prints/221739/images/2028209_0e114664-e4c5-4bff-932d-47b65b293381/thumbs/cover/800x800/jpg/mg_1369.jpg" alt="Small Geometric Planter"></div>
+      <div class="photo p3"><img src="https://media.printables.com/media/prints/984728/images/7505035_0a868f1b-beb3-4dbe-85cb-26cb0039d125_f43bac2e-bfe3-4f65-90fa-e72eef915c81/thumbs/cover/800x800/jpg/2024-08-11_ef18a8eec158b.jpg" alt="Samurai Incense Holder"></div>
+      <div class="photo p4"><img src="https://media.printables.com/media/prints/335737/images/2875831_c9c04364-e06e-40f1-b9b2-e07f1adf9775/thumbs/cover/800x800/jpg/img_20221209_104838-1.jpg" alt="Headphone Table Hook"></div>
+      <div class="photo p5"><img src="https://media.printables.com/media/prints/119964/images/9072788_c3b5ea41-9723-4b4d-9f11-19787528e7be_cc1e784d-863b-4cdd-97da-8604a8c8a623/thumbs/cover/800x800/jpeg/img_2137.jpg" alt="Apple Watch Charging Dock"></div>
     </div>
   </div>
 </section>
@@ -257,13 +266,12 @@
 <section class="shop" id="shop">
   <div class="wrap">
     <div class="shop-head">
-      <div>
-        <h2>Incense holders</h2>
-        <p>Curated from Printables — single-colour-friendly designs that print cleanly without support material headaches.</p>
-      </div>
+      <h2>The shop</h2>
+      <p>Curated from Printables, sorted by how well-liked each design actually is. Everything here fits inside a 256×256×256mm build volume.</p>
     </div>
     <div class="shop-note"><b>Placeholder catalog.</b> Swap these for your own designs and pricing whenever you're ready.</div>
-    <div class="grid" id="product-grid"></div>
+    <div class="cat-jump" id="cat-jump"></div>
+    <div id="category-sections"></div>
   </div>
 </section>
 
@@ -307,36 +315,140 @@
     { name: "Brown (Wood)", hex: "#8a5a34" }
   ];
 
-  const PRODUCTS = [
-    { id:"samurai-sword", title:"Samurai Incense Holder", maker:"3D prints and gifts", category:"Incense Holder",
-      blurb:"A samurai figure holding the incense stick like a sword — the smoke rises right where the blade would be.", price:32.00,
-      img:"https://media.printables.com/media/prints/984728/images/7505035_0a868f1b-beb3-4dbe-85cb-26cb0039d125_f43bac2e-bfe3-4f65-90fa-e72eef915c81/thumbs/cover/800x800/jpg/2024-08-11_ef18a8eec158b.jpg",
-      url:"https://www.printables.com/model/984728-samurai-incense-holder" },
-    { id:"samurai-fight", title:"Samurai Incense Holder (Ready Stance)", maker:"SoulMate Santhosh", category:"Incense Holder",
-      blurb:"Samurai holding the incense stick like a sword, ready for a fight — base doubles as storage for spare sticks.", price:28.00,
-      img:"https://media.printables.com/media/prints/913917/images/6979993_72916e2d-6461-408c-a491-e4770e5cbdb2_97d3cb35-3a6b-469b-b4fe-dec50b6c8635/thumbs/cover/800x800/jpg/whatsapp-image-2024-06-16-at-143611_08e6e396.jpg",
-      url:"https://www.printables.com/model/913917-samurai-incense-holder" },
-    { id:"lotus-holder", title:"Lotus Incense Holder + Bowl", maker:"Mop Flop", category:"Incense Holder",
-      blurb:"A lotus flower with a hole for the stick and a bowl underneath to catch the ash.", price:22.00,
-      img:"https://media.printables.com/media/prints/66891e7c-acc2-448a-9891-73550d792bbd/images/10753211_058b324c-8dda-46dc-bf07-0a00edb775bb_8135bf36-3df9-43d2-be98-f871dd9e19d2/thumbs/cover/800x800/jpg/20250826_072130.jpg",
-      url:"https://www.printables.com/model/1425698-incense-stick-lotus-holder-bowl" },
-    { id:"peaks-holder", title:"Peaks Incense Holder", maker:"3DWhip", category:"Incense Holder",
-      blurb:"A mountain-range silhouette that holds the stick through its tallest peak, body catches the ash below.", price:19.00,
-      img:"https://media.printables.com/media/prints/724388/images/5673506_0a2e87e2-e8e6-4e9f-945e-e9f1093ad47a_7caa8749-2446-493d-a5d3-00696818e447/thumbs/cover/800x800/jpg/1.jpg",
-      url:"https://www.printables.com/model/724388-peaks-incense-stick-holder" },
-    { id:"ribbed-holder", title:"Ribbed Incense Holder", maker:"Mothaposa", category:"Incense Holder",
-      blurb:"A clean, modern ribbed design — simple geometry that reads well in a single solid colour.", price:18.00,
-      img:"https://media.printables.com/media/prints/637268/images/5039400_90da6075-0fee-43a4-b6a4-4b7bb5fcb1e4_b8ab8af9-ea45-44d2-aeee-c9f045a9bb58/thumbs/cover/800x800/jpg/img_4128.jpg",
-      url:"https://www.printables.com/model/637268-modern-inspired-incense-holder-ribbed" },
-    { id:"tray-holder", title:"Incense Tray Holder", maker:"nero82", category:"Incense Holder",
-      blurb:"A simple, wide tray holder built to catch every bit of ash — no incense stick misses.", price:16.00,
-      img:"https://media.printables.com/media/prints/336302/images/2879355_6ea01322-6f06-4422-8648-1882da0a8484/thumbs/cover/800x800/jpg/pxl_20221209_183218189.jpg",
-      url:"https://www.printables.com/model/336302-incense-holder" },
-    { id:"alien-holder", title:"Alien Incense Holder", maker:"Hrvoje Huskić", category:"Incense Holder",
-      blurb:"A sculptural alien figure that holds the stick like a small sci-fi statue for your shelf.", price:26.00,
-      img:"https://media.printables.com/media/prints/983468/images/7496465_60c91ed0-3d2d-4e8a-8b4e-12d637a8b69e_68606710-6e5f-4d48-a3c8-cf62aa535d6c/thumbs/cover/800x800/jpg/20240823_133624.jpg",
-      url:"https://www.printables.com/model/983468-alien-incense-holder" }
+  // ------------------------------------------------------------------
+  // CATALOG — grouped into 6 categories, highest-liked real Printables designs
+  // All items verified under 256x256x256mm (Bambu Lab A1 build volume)
+  // ------------------------------------------------------------------
+  const CATEGORIES = [
+    {
+      id: "storage",
+      title: "Modular Storage",
+      blurb: "Gridfinity bins and drawers, plus IKEA Skådis pegboard accessories.",
+      products: [
+        { id:"gridfinity-plain-bins", title:"Gridfinity Plain Bins", maker:"zk101", category:"Gridfinity",
+          blurb:"The essential Gridfinity bin set — the most-liked storage design on Printables.", price:14.00,
+          img:"https://media.printables.com/media/prints/184201/images/1717862_70493daf-04a7-400d-8c05-a8fbf99ab6e8/thumbs/cover/800x800/webp/ra_9zu-mnl8.webp",
+          url:"https://www.printables.com/model/184201-gridfinity-plain-bins" },
+        { id:"skadis-ultimate-set", title:"IKEA Skådis Ultimate Set", maker:"Matyáš Grohmann", category:"Pegboard",
+          blurb:"29 bins, trays and hangers for the IKEA Skådis pegboard system.", price:38.00,
+          img:"https://media.printables.com/media/prints/1157173/images/8788394_2f4c88b8-06b2-42af-b31d-e9d02ae581d4_2c8003b1-8069-47f3-85c3-3ff2eaf7fd42/thumbs/cover/800x800/png/skadis-set-pic1.png",
+          url:"https://www.printables.com/model/1157173-ikea-skadis-ultimate-bin-tray-hanger-set" },
+        { id:"gridfinity-drawers", title:"Modular Gridfinity Drawers", maker:"Travis Houston", category:"Gridfinity",
+          blurb:"A full drawer unit built around the Gridfinity grid system, 2x5 cells.", price:32.00,
+          img:"https://media.printables.com/media/prints/402298/images/3381595_a8863b81-18c4-4674-9e79-3d736845f7f4/thumbs/cover/800x800/jpg/img_20230221_200046.jpg",
+          url:"https://www.printables.com/model/402298-modular-gridfinity-drawers" },
+        { id:"gridfinity-box-classic", title:"Gridfinity Box Classic", maker:"GlennovitS 3D", category:"Gridfinity",
+          blurb:"Quick-print stackable bins for a desk or drawer, several sizes available.", price:12.00,
+          img:"https://media.printables.com/media/prints/197640c2-3691-4d8d-8d2f-29b869092992/images/10588484_f18418a6-d9fc-43ad-9450-8c1afcb2c343_57cec628-05c0-40a9-9730-aae75a08def7/thumbs/cover/800x800/png/classic-4x3-thumbnail2x.png",
+          url:"https://www.printables.com/model/729427-gridfinity-box-classic-organizer-boxes-for-desktop" }
+      ]
+    },
+    {
+      id: "planters",
+      title: "Modular Planters",
+      blurb: "Stacking and geometric planters, plus a self-watering accessory.",
+      products: [
+        { id:"small-geometric-planter", title:"Small Geometric Planter", maker:"Julian1111", category:"Planter",
+          blurb:"A small spiral vase-mode planter — one of the most-liked prints on all of Printables.", price:16.00,
+          img:"https://media.printables.com/media/prints/221739/images/2028209_0e114664-e4c5-4bff-932d-47b65b293381/thumbs/cover/800x800/jpg/mg_1369.jpg",
+          url:"https://www.printables.com/model/221739-small-geometric-planter" },
+        { id:"plantygon", title:"Plantygon", maker:"printfutura", category:"Modular Planter",
+          blurb:"Geometric planters based on a tessellating shape — stack them together any way you like.", price:10.00,
+          img:"https://media.printables.com/media/prints/11351/images/97255_483fd5c3-7b2d-4f21-a9a7-82b06361db00/thumbs/cover/800x800/jpg/plantygon1_11351.jpg",
+          url:"https://www.printables.com/model/11351-plantygon-modular-geometric-stacking-planter-for-s" },
+        { id:"self-watering-spike", title:"Adjustable Self-Watering Spike", maker:"3Dplanner.be", category:"Accessory",
+          blurb:"Screws onto a plastic bottle and slowly drips water into the soil — adjustable flow.", price:14.00,
+          img:"https://media.printables.com/media/prints/62609/images/655060_893bc975-05c4-4b54-9c0f-ca1048acce64/thumbs/cover/800x800/png/3dplanner-watering-spike-render-1.png",
+          url:"https://www.printables.com/model/62609-adjustable-self-watering-spike" },
+        { id:"stackable-planter-150", title:"Stackable Planter, 150mm", maker:"Wilko", category:"Planter",
+          blurb:"A classic stackable planter with a matching saucer.", price:18.00,
+          img:"https://media.printables.com/media/prints/39159/images/386839_1c3e959d-dc8b-436f-bd10-d2735816dfc2/thumbs/cover/800x800/png/topside_medium_39159.png",
+          url:"https://www.printables.com/model/39159-stackable-planter-150mm" }
+      ]
+    },
+    {
+      id: "incense",
+      title: "Incense Holders",
+      blurb: "Tasteful, single-colour-friendly designs — nothing over the top.",
+      products: [
+        { id:"samurai-incense", title:"Samurai Incense Holder", maker:"3D prints and gifts", category:"Incense Holder",
+          blurb:"A samurai figure holding the incense stick like a sword. The best-liked incense holder on Printables.", price:30.00,
+          img:"https://media.printables.com/media/prints/984728/images/7505035_0a868f1b-beb3-4dbe-85cb-26cb0039d125_f43bac2e-bfe3-4f65-90fa-e72eef915c81/thumbs/cover/800x800/jpg/2024-08-11_ef18a8eec158b.jpg",
+          url:"https://www.printables.com/model/984728-samurai-incense-holder" },
+        { id:"lotus-incense", title:"Lotus Incense Holder + Bowl", maker:"Mop Flop", category:"Incense Holder",
+          blurb:"A lotus flower with a hole for the stick and a bowl to catch the ash.", price:22.00,
+          img:"https://media.printables.com/media/prints/66891e7c-acc2-448a-9891-73550d792bbd/images/10753211_058b324c-8dda-46dc-bf07-0a00edb775bb_8135bf36-3df9-43d2-be98-f871dd9e19d2/thumbs/cover/800x800/jpg/20250826_072130.jpg",
+          url:"https://www.printables.com/model/1425698-incense-stick-lotus-holder-bowl" },
+        { id:"ribbed-incense", title:"Ribbed Incense Holder", maker:"Mothaposa", category:"Incense Holder",
+          blurb:"Clean, modern ribbed geometry — reads elegantly in a single solid colour.", price:18.00,
+          img:"https://media.printables.com/media/prints/637268/images/5039400_90da6075-0fee-43a4-b6a4-4b7bb5fcb1e4_b8ab8af9-ea45-44d2-aeee-c9f045a9bb58/thumbs/cover/800x800/jpg/img_4128.jpg",
+          url:"https://www.printables.com/model/637268-modern-inspired-incense-holder-ribbed" },
+        { id:"tray-incense", title:"Incense Tray Holder", maker:"nero82", category:"Incense Holder",
+          blurb:"Simple, wide tray built to catch every bit of ash. No incense stick misses.", price:14.00,
+          img:"https://media.printables.com/media/prints/336302/images/2879355_6ea01322-6f06-4422-8648-1882da0a8484/thumbs/cover/800x800/jpg/pxl_20221209_183218189.jpg",
+          url:"https://www.printables.com/model/336302-incense-holder" }
+      ]
+    },
+    {
+      id: "headphones",
+      title: "Headphone Desk Hangers",
+      blurb: "Screw-clamp style — mounts to the underside of a desk, no drilling.",
+      products: [
+        { id:"headphone-table-hook", title:"Headphone Table Hook", maker:"michalgerhat", category:"Headphone Hanger",
+          blurb:"Curved hook that clamps under the desk. The best-liked headphone hanger on Printables.", price:16.00,
+          img:"https://media.printables.com/media/prints/335737/images/2875831_c9c04364-e06e-40f1-b9b2-e07f1adf9775/thumbs/cover/800x800/jpg/img_20221209_104838-1.jpg",
+          url:"https://www.printables.com/model/335737-headphone-table-hook" },
+        { id:"headphone-screw-clamp", title:"Headphone Hanger, Screw Clamp", maker:"JohnMartin", category:"Headphone Hanger",
+          blurb:"Under-desk mount with a locking screw clamp — fits desks up to 36mm thick.", price:18.00,
+          img:"https://media.printables.com/media/prints/638232/images/5045666_6ba50719-7c78-44bc-a2f4-6e01d42f69e7_68ae859b-ddbd-4171-abb0-97b68d01fcc8/thumbs/cover/800x800/jpg/img_1551.jpg",
+          url:"https://www.printables.com/model/638232-headphones-hanger-under-desk-mount-with-screw-clam" },
+        { id:"headphone-desk-clamp", title:"Headphone Desk Clamp", maker:"David", category:"Headphone Hanger",
+          blurb:"A minimal clamp-style hanger with a printed bolt, no hardware needed.", price:16.00,
+          img:"https://media.printables.com/media/prints/174289/images/1637219_c088e46b-ecc7-426f-bda0-6f87ccec76a7/thumbs/cover/800x800/png/heapdphone_clamp_1.png",
+          url:"https://www.printables.com/model/174289-headphone-desk-clamp" }
+      ]
+    },
+    {
+      id: "console",
+      title: "Console Mods",
+      blurb: "Controller wall mounts, single and dual configurations.",
+      products: [
+        { id:"ps5-controller-clip", title:"PS5 Controller Clip", maker:"neyth_makes", category:"Controller Mount",
+          blurb:"Single wall clip for the DualSense controller. The most-liked controller mount on Printables.", price:12.00,
+          img:"https://media.printables.com/media/prints/202548/images/1864103_f477c025-f3fe-42f8-bb74-09835422a504/thumbs/cover/800x800/jpg/large_display_pxl_20210324_1154021182_202548.jpg",
+          url:"https://www.printables.com/model/202548-ps5-controller-clip" },
+        { id:"double-controller-holder", title:"Double Controller Holder", maker:"Owl", category:"Controller Mount",
+          blurb:"Screw-mounted holder for 2 controllers. Works with Xbox and PlayStation.", price:24.00,
+          img:"https://media.printables.com/media/prints/376313/images/3163381_97987d85-5da0-4313-b88e-08429dc50aa3/thumbs/cover/800x800/jpg/20230121_153905.jpg",
+          url:"https://www.printables.com/model/376313-double-controller-holder-for-xbox-ps5-vertical-wal" },
+        { id:"ps5-dual-wall-holder", title:"PS5 Controller Wall Holder — Dual", maker:"Jakub H", category:"Controller Mount",
+          blurb:"Wall-mounted holder for two PS5 controllers side by side.", price:22.00,
+          img:"https://media.printables.com/media/prints/653436/images/5152282_e01cc1b3-ca77-43bd-9ff3-1f19149db347_77262b39-90da-4ad7-b65f-120e0c53a683/thumbs/cover/800x800/gif/tempimage6jgaje.gif",
+          url:"https://www.printables.com/model/653436-ps5-controller-wall-holder-dual" }
+      ]
+    },
+    {
+      id: "nightstand",
+      title: "Nightstand Accessories",
+      blurb: "Apple Watch docks, phone stands, and valet-style trays.",
+      products: [
+        { id:"apple-watch-dock", title:"Apple Watch 360° Charging Dock", maker:"GiantBrain", category:"Watch Dock",
+          blurb:"Fits Series 6-9 and Ultra. Built-in wire storage. One of the most-printed Apple Watch docks anywhere.", price:16.00,
+          img:"https://media.printables.com/media/prints/119964/images/9072788_c3b5ea41-9723-4b4d-9f11-19787528e7be_cc1e784d-863b-4cdd-97da-8604a8c8a623/thumbs/cover/800x800/jpeg/img_2137.jpg",
+          url:"https://www.printables.com/model/119964-apple-watch-series-6-to-9-and-ultra-1-to-2-360-cha" },
+        { id:"nightstand-organizer", title:"Nightstand Organizer with Phone Holder", maker:"Scoon", category:"Valet Tray",
+          blurb:"Angled shelves for phone and watch charger, plus space for everyday odds and ends.", price:28.00,
+          img:"https://media.printables.com/media/prints/1059369/images/8021438_4c82a08b-199e-4455-9c60-346b68ea9759_d1455195-fc0c-4e37-b9b8-6e4752d90647/thumbs/cover/800x800/png/dimetric-view.png",
+          url:"https://www.printables.com/model/1059369-nightstand-organizer-with-phone-holder" },
+        { id:"phone-stand-charging", title:"Phone Stand with Charging Cutout", maker:"CESAR Design", category:"Phone Stand",
+          blurb:"Compact stand with a rear cable hole so the phone can charge while it's docked.", price:14.00,
+          img:"https://media.printables.com/media/prints/c6d0478a-d006-4351-a5c6-aa59a9b423d7/images/11486080_6622395c-e30c-4489-9a2c-921b2c76af0c_8082a221-8386-4358-b9af-9a44469cef7b/thumbs/cover/800x800/png/phone_stand1.png",
+          url:"https://www.printables.com/model/1524710-phone-stand-holder" }
+      ]
+    }
   ];
+
+  const PRODUCTS = CATEGORIES.flatMap(c => c.products);
 
   const selection = {};
   PRODUCTS.forEach(p => selection[p.id] = { colorIdx: 0, qty: 1 });
@@ -346,6 +458,11 @@
 
   const fmt = n => "$" + n.toFixed(2) + " CAD";
   const findProduct = id => PRODUCTS.find(p => p.id === id);
+
+  // ---------------- CATEGORY JUMP NAV ----------------
+  document.getElementById('cat-jump').innerHTML = CATEGORIES.map(c =>
+    `<a href="#cat-${c.id}">${c.title}</a>`
+  ).join('');
 
   // ---------------- PRODUCT GRID ----------------
   function renderSwatches(product){
@@ -390,10 +507,22 @@
     `;
   }
 
-  const grid = document.getElementById('product-grid');
-  grid.innerHTML = PRODUCTS.map(renderCard).join('');
+  function renderCategorySection(cat){
+    return `
+      <div class="category-block" id="cat-${cat.id}">
+        <div class="category-head">
+          <h3>${cat.title}</h3>
+          <span>${cat.blurb}</span>
+        </div>
+        <div class="grid">${cat.products.map(renderCard).join('')}</div>
+      </div>
+    `;
+  }
 
-  grid.addEventListener('click', (e) => {
+  document.getElementById('category-sections').innerHTML = CATEGORIES.map(renderCategorySection).join('');
+
+  const shopSections = document.getElementById('category-sections');
+  shopSections.addEventListener('click', (e) => {
     const swatch = e.target.closest('.swatch');
     if (swatch){
       const id = swatch.dataset.product, idx = parseInt(swatch.dataset.idx,10);
